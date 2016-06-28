@@ -1,3 +1,109 @@
+$backgroundColor: #e74c3c;
+$buttonColor: #c0392b;
+$btnHoverColor: #A5281B;
+$goodBtnColor: rgb(55, 221, 166);
+
+body {
+  // position: relative;
+  text-align: center;
+  background: $backgroundColor;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+	border: none;
+	background: $buttonColor;
+	color: #fff;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	font-size: 1em;
+	letter-spacing: 1px;
+	cursor: pointer;
+  outline: none;
+  padding: 30px;
+  box-sizing: border-box;
+  &:hover {
+    background: $btnHoverColor;
+  }
+  &:active {
+    background: darken($btnHoverColor,5%);
+  }
+}
+
+
+#turnsRemaining {
+  margin-top: 10vh;
+}
+
 #guessWord {
-  letter-spacing: 200%;
+  margin-top: 10vh;
+  font-size: 3rem;
+}
+
+.guesses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  li {
+    color: #000;
+  }
+}
+
+.letters {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 600px;
+  .letter {
+    width: calc(100%/8);
+  }
+}
+
+.guessed {
+  background: darken($btnHoverColor,5%);
+}
+
+.modal-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal {
+  display: flex;
+  // align-self: center;
+  // : space-around;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  width: 400px;
+  height: 30vh;
+  border-radius: 10px;
+  color: $goodBtnColor;
+  // position: absolute;
+  button {
+    background: $goodBtnColor;
+    border-radius: 10px;
+    width: 50%;
+    padding: 20px;
+    &:hover {
+      background: darken($goodBtnColor, 5%)
+    }
+  }
 }

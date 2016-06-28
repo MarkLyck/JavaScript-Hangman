@@ -3,14 +3,50 @@
   <head>
     <meta charset="utf-8">
     <title>Hangman!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" media="screen">
+    <link rel="stylesheet" href="main.css" media="screen">
   </head>
   <body>
     <p id="turnsRemaining">10 turns remaining</p>
     <div class="word-container">
       <p id="guessWord"></p>
     </div>
-    <input type="text" name="name" value="">
-    <div class="gussed-container"></div>
+    <ul id="guessed-container" class="guesses"></ul>
+    <div class="letters">
+      <button class="letter" type="button" name="button">A</button>
+      <button class="letter" type="button" name="button">B</button>
+      <button class="letter" type="button" name="button">C</button>
+      <button class="letter" ype="button" name="button">D</button>
+      <button class="letter" type="button" name="button">E</button>
+      <button class="letter" type="button" name="button">F</button>
+      <button class="letter" type="button" name="button">G</button>
+      <button class="letter" type="button" name="button">H</button>
+      <button class="letter" type="button" name="button">I</button>
+      <button class="letter" type="button" name="button">J</button>
+      <button class="letter" type="button" name="button">K</button>
+      <button class="letter" type="button" name="button">L</button>
+      <button class="letter" type="button" name="button">M</button>
+      <button class="letter" type="button" name="button">N</button>
+      <button class="letter" type="button" name="button">O</button>
+      <button class="letter" type="button" name="button">P</button>
+      <button class="letter" type="button" name="button">Q</button>
+      <button class="letter" type="button" name="button">R</button>
+      <button class="letter" type="button" name="button">S</button>
+      <button class="letter" type="button" name="button">T</button>
+      <button class="letter" type="button" name="button">U</button>
+      <button class="letter" type="button" name="button">V</button>
+      <button class="letter" type="button" name="button">W</button>
+      <button class="letter" type="button" name="button">X</button>
+      <button class="letter" type="button" name="button">Y</button>
+      <button class="letter" type="button" name="button">Z</button>
+    </div>
+
+    <div class="modal-container">
+      <div class="modal">
+				<h3>You Won!</h3>
+				<button id="newGame">New game!</button>
+      </div>
+		</div>
 
     <script src="common-words.js" type="text/javascript"></script>
     <script src="main.js" type="text/javascript"></script>
