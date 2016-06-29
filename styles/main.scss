@@ -42,6 +42,13 @@ button {
   margin-top: 10vh;
 }
 
+.hangman {
+  height: 200px;
+  width: 85px;
+  margin: 0 auto;
+  background: url('assets/images/hangman1.png') no-repeat;
+}
+
 #guessWord {
   margin-top: 10vh;
   font-size: 3rem;
@@ -58,7 +65,7 @@ button {
 }
 
 .letters {
-  margin: 0 auto;
+  margin: 20px auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -93,10 +100,13 @@ button {
   align-items: center;
   background: #fff;
   width: 400px;
-  height: 30vh;
-  border-radius: 10px;
+  height: 250px;
+  border-radius: 5px;
   color: $goodBtnColor;
   // position: absolute;
+  #winLoss {
+    color: darkgray;
+  }
   button {
     background: $goodBtnColor;
     border-radius: 10px;

@@ -9,18 +9,20 @@ function httpGet(theUrl)
 var d = document;
 var word = '';
 var displayArray = [];
-var turns = 10;
+var turns = 6;
 var guessedChars = [];
 var correctChars = [];
-var turnsRemaining = d.querySelector('#turnsRemaining');
+// var turnsRemaining = d.querySelector('#turnsRemaining');
 var guessWord = d.querySelector('#guessWord');
-var guessedContainer = d.querySelector('#guessed-container');
+// var guessedContainer = d.querySelector('#guessed-container');
 var harhar = new Audio('assets/sounds/Nelson.mp3');
 var winCounter = 0;
 var lossCounter = 0;
 var newGameBtn = d.querySelector('#newGame');
 var modalContainer = d.querySelector('.modal-container');
 var modalTitle = d.querySelector('.modal h3');
+var winLoss = d.querySelector('#winLoss');
+var hangMan = d.querySelector('.hangman');
 
 newGameBtn.addEventListener('click', function(){
   modalContainer.style.display = 'none';
@@ -50,7 +52,6 @@ function newGame() {
   var randomNumber = Math.round(Math.random()*commonWords.length);
   // word = commonWords[randomNumber].toUpperCase();
   var saveWord = httpGet('http://randomword.setgetgo.com/get.php');
-  console.log(saveWord);
   word = saveWord.toUpperCase();
 
   displayArray = [];
@@ -58,7 +59,7 @@ function newGame() {
     displayArray.push('_');
   });
   guessWord.textContent = displayArray.join(' ');
-  turns = 10;
+  turns = 6;
   console.log('New word = ' + word);
 
   letters.forEach(function(letter) { // Reset letter styling
@@ -66,7 +67,6 @@ function newGame() {
   });
 
   guessedChars = [];
-  updateGuesses();
   updateTurns();
 }
 
@@ -74,12 +74,9 @@ function newGame() {
 
 
 function testInput(guess) {
-
-  console.log(guess);
   if (guess.length === 0) { // If nothing was typed in
     throw new Error('You didn\'t type in anything');
   } else if (word.indexOf(guess) !== -1) { // If the player guesses a correct character
-    console.log('Correct char guess');
     displayArray = []; // Reset displayArray
     word.split('').forEach(function(char) {
       if (guessedChars.indexOf(char) !== -1) {
@@ -91,17 +88,14 @@ function testInput(guess) {
     });
     guessWord.textContent = displayArray.join(' '); // Update p tag
     if (displayArray.indexOf('_') === -1) { // If all letters have been guessed
-      console.log('YOU WON!');
       win();
     }
   } else if (turns !== 1) {
     turns--;
-    console.log('Wrong');
   } else {
-    console.log('YOU LOST!');
+    updateTurns();
     loss();
   }
-  updateGuesses();
   updateTurns();
 }
 
@@ -111,29 +105,27 @@ function testInput(guess) {
 
 
 function updateTurns() {
-  if (turns !== 1) {
-    turnsRemaining.textContent = turns + ' turns remaining';
+  if (turns === 6) {
+    hangMan.style.background = 'url(\'assets/images/hangman1.png\') no-repeat';
+  } else if (turns === 5) {
+    hangMan.style.background = 'url(\'assets/images/hangman2.png\') no-repeat';
+  } else if (turns === 4) {
+    hangMan.style.background = 'url(\'assets/images/hangman3.png\') no-repeat';
+  } else if (turns === 3) {
+    hangMan.style.background = 'url(\'assets/images/hangman4.png\') no-repeat';
+  } else if (turns === 2) {
+    hangMan.style.background = 'url(\'assets/images/hangman5.png\') no-repeat';
+  } else if (turns === 1) {
+    hangMan.style.background = 'url(\'assets/images/hangman6.png\') no-repeat';
   } else {
-    turnsRemaining.textContent = turns + ' turn remaining';
+    hangMan.style.background = 'url(\'assets/images/hangman7.png\') no-repeat';
   }
-}
 
-
-
-
-
-
-
-function updateGuesses() {
-  while (guessedContainer.firstChild) {
-    guessedContainer.removeChild(guessedContainer.firstChild);
-  }
-  guessedChars.forEach(function(guess) {
-    var node = document.createElement("li");
-    var textNode = document.createTextNode(guess);
-    node.appendChild(textNode);
-    guessedContainer.appendChild(node);
-  });
+  // if (turns !== 1) {
+  //   turnsRemaining.textContent = turns + ' turns remaining';
+  // } else {
+  //   turnsRemaining.textContent = turns + ' turn remaining';
+  // }
 }
 
 
@@ -143,15 +135,30 @@ function win() {
   newGameBtn.style.background = 'rgb(55, 221, 166)';
   modalTitle.textContent = 'You Won!';
   winCounter++;
+  updateWLCounter();
   updateTurns();
 }
 
 function loss() {
+  hangMan.style.background = 'url(\'assets/images/hangman7.png\') no-repeat';
   harhar.play();
   modalContainer.style.display = 'flex';
   modalTitle.style.color = '#e74c3c';
   newGameBtn.style.background = '#e74c3c';
   modalTitle.textContent = 'You Lost!';
   lossCounter++;
+  updateWLCounter();
   updateTurns();
+}
+
+function updateWLCounter() {
+  if (winCounter === 1 && lossCounter === 1) {
+    winLoss.textContent = winCounter + ' win & ' + lossCounter + ' loss';
+  } else if (winCounter === 1 && lossCounter !== 1) {
+    winLoss.textContent = winCounter + ' win & ' + lossCounter + ' losses';
+  } else if (winCounter !== 1 && lossCounter === 1) {
+    winLoss.textContent = winCounter + ' wins & ' + lossCounter + ' loss';
+  } else {
+    winLoss.textContent = winCounter + ' wins & ' + lossCounter + ' losses';
+  }
 }

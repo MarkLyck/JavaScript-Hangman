@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="main.css" media="screen">
   </head>
   <body>
-    <p id="turnsRemaining">10 turns remaining</p>
-    <div class="word-container">
-      <p id="guessWord"></p>
-    </div>
-    <ul id="guessed-container" class="guesses"></ul>
+    <!-- <p id="turnsRemaining">10 turns remaining</p> -->
+    <div class="hangman"></div>
+    <p id="guessWord"></p>
+    <!-- <ul id="guessed-container" class="guesses"></ul> -->
     <div class="letters">
       <button class="letter" type="button" name="button">A</button>
       <button class="letter" type="button" name="button">B</button>
@@ -44,6 +43,7 @@
     <div class="modal-container">
       <div class="modal">
 				<h3>You Won!</h3>
+        <p id="winLoss"></p>
 				<button id="newGame">New game!</button>
       </div>
 		</div>
