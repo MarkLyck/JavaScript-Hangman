@@ -79,6 +79,8 @@ button {
   height: 250px;
   border-radius: 5px;
   color: #37dda6; }
+  .modal #correct-word {
+    color: darkgray; }
   .modal #winLoss {
     color: darkgray; }
   .modal button {

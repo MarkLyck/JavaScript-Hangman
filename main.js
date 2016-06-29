@@ -23,6 +23,7 @@ var modalContainer = d.querySelector('.modal-container');
 var modalTitle = d.querySelector('.modal h3');
 var winLoss = d.querySelector('#winLoss');
 var hangMan = d.querySelector('.hangman');
+var correctWord = d.querySelector('#correct-word');
 
 newGameBtn.addEventListener('click', function(){
   modalContainer.style.display = 'none';
@@ -120,12 +121,6 @@ function updateTurns() {
   } else {
     hangMan.style.background = 'url(\'assets/images/hangman7.png\') no-repeat';
   }
-
-  // if (turns !== 1) {
-  //   turnsRemaining.textContent = turns + ' turns remaining';
-  // } else {
-  //   turnsRemaining.textContent = turns + ' turn remaining';
-  // }
 }
 
 
@@ -134,6 +129,7 @@ function win() {
   modalTitle.style.color = 'rgb(55, 221, 166)';
   newGameBtn.style.background = 'rgb(55, 221, 166)';
   modalTitle.textContent = 'You Won!';
+  correctWord.textContent = '';
   winCounter++;
   updateWLCounter();
   updateTurns();
@@ -146,6 +142,7 @@ function loss() {
   modalTitle.style.color = '#e74c3c';
   newGameBtn.style.background = '#e74c3c';
   modalTitle.textContent = 'You Lost!';
+  correctWord.textContent = 'The correct word was: ' + word;
   lossCounter++;
   updateWLCounter();
   updateTurns();

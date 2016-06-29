@@ -104,6 +104,9 @@ button {
   border-radius: 5px;
   color: $goodBtnColor;
   // position: absolute;
+  #correct-word {
+    color: darkgray;
+  }
   #winLoss {
     color: darkgray;
   }
